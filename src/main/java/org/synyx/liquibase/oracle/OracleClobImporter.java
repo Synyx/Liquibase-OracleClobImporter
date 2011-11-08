@@ -118,17 +118,20 @@ public class OracleClobImporter implements CustomTaskChange {
         } catch (DatabaseException e) {
             throw new CustomChangeException(e);
         } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
+            closeResultSet(rs);
+            closeStatement(statement);
+        }
+    }
 
-                if (statement != null) {
-                    statement.close();
-                }
-            } catch (SQLException e) {
-                // Swallow exception
+
+    private void closeResultSet(ResultSet rs) {
+
+        try {
+            if (rs != null) {
+                rs.close();
             }
+        } catch (SQLException e) {
+            // Swallow exception
         }
     }
 
@@ -145,13 +148,19 @@ public class OracleClobImporter implements CustomTaskChange {
         } catch (DatabaseException e) {
             throw new CustomChangeException(e);
         } finally {
-            try {
-                if (statement != null) {
-                    statement.close();
-                }
-            } catch (SQLException e) {
-                // Swallow exception
+            closeStatement(statement);
+        }
+    }
+
+
+    private void closeStatement(Statement statement) {
+
+        try {
+            if (statement != null) {
+                statement.close();
             }
+        } catch (SQLException e) {
+            // Swallow exception
         }
     }
 
