@@ -29,11 +29,6 @@ public class OracleClobImporter implements CustomTaskChange {
 
     private static final String PARAM_TABLE_NAME = "tableName";
     private static final String PARAM_COLUMN_NAME = "columnName";
-    private static final String PARAM_FILE_NAME = "fileName";
-    private static final String PARAM_FILE_ENCODING = "fileEncoding";
-    private static final String PARAM_CLOB_CONTENT = "clobContent";
-    private static final String PARAM_WHERE_CLAUSE = "where";
-    private static final String PARAM_MAX_SIZE = "maxSize";
 
     private static final String DEFAULT_ENCODING = System.getProperty("file.encoding", "UTF-8");
     private static final int DEFAULT_BUFFER_SIZE = 4096;
