@@ -226,7 +226,7 @@ public class OracleClobImporter implements CustomTaskChange {
         validationErrors.checkRequiredField(PARAM_TABLE_NAME, tableName);
         validationErrors.checkRequiredField(PARAM_COLUMN_NAME, columnName);
 
-        return null;
+        return validationErrors;
     }
 
 
