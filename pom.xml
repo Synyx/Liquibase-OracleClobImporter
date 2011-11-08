@@ -4,7 +4,7 @@
 
     <groupId>org.synyx.liquibase</groupId>
     <artifactId>ora-clob-importer</artifactId>
-    <version>0.1</version>
+    <version>0.2-SNAPSHOT</version>
 
     <name>OracleClobImporter</name>
     <description>Liquibase custom task change for importing CLOBs into an Oracle database</description>
