@@ -5,11 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.synyx.liquibase</groupId>
-    <artifactId>OracleClobImporter</artifactId>
+    <artifactId>ora-clob-importer</artifactId>
     <version>0.1-SNAPSHOT</version>
 
+    <name>OracleClobImporter</name>
+    <description>Liquibase custom task change for importing CLOBs into an Oracle database</description>
+
     <properties>
-         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <contributors>
@@ -24,16 +27,30 @@
         </contributor>
     </contributors>
 
+    <licenses>
+        <license>
+            <name>Apache 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <developerConnection>scm:git:git@github.com:Synyx/Liquibase-OracleClobImporter.git</developerConnection>
+        <connection>scm:git:github.com/Synyx/Liquibase-OracleClobImporter.git</connection>
+        <url>https://github.com/Synyx/Liquibase-OracleClobImporter</url>
+    </scm>
+
     <dependencies>
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
-            <version>2.0.2</version>
+            <version>2.0.3</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.0.1</version>
+            <version>2.1</version>
         </dependency>
     </dependencies>
 
@@ -48,6 +65,6 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
-        </plugins> 
+        </plugins>
     </build>
 </project>
