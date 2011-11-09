@@ -10,7 +10,6 @@ import liquibase.resource.ResourceAccessor;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -46,9 +45,29 @@ public class OracleClobImporterTest {
     }
 
 
-    @Test
+    @Test(expected = SetupException.class)
+    public void testSetUpMissingTableName() throws SetupException {
+
+        taskChange.setColumnName("FooColumn");
+
+        taskChange.setUp();
+    }
+
+
+    @Test(expected = SetupException.class)
+    public void testSetUpMissingColumnName() throws SetupException {
+
+        taskChange.setTableName("FooTable");
+
+        taskChange.setUp();
+    }
+
+
+    @Test(expected = SetupException.class)
     public void testSetUpNullFileName() throws SetupException {
 
+        taskChange.setColumnName("FooColumn");
+        taskChange.setTableName("FooTable");
         taskChange.setFileName(null);
 
         taskChange.setUp();
@@ -67,6 +86,8 @@ public class OracleClobImporterTest {
                 }
             });
 
+        taskChange.setColumnName("FooColumn");
+        taskChange.setTableName("FooTable");
         taskChange.setFileName("myFile");
 
         taskChange.setUp();
@@ -76,14 +97,7 @@ public class OracleClobImporterTest {
     @Test
     public void testValidate() {
 
-        taskChange.setColumnName("FooColumn");
-        taskChange.setTableName("FooTable");
-
         ValidationErrors errors = taskChange.validate(database);
-        assertTrue(errors.hasErrors());
-
-        taskChange.setFileName("");
-        errors = taskChange.validate(database);
         assertFalse(errors.hasErrors());
     }
 
