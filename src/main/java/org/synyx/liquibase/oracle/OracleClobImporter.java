@@ -194,7 +194,15 @@ public class OracleClobImporter implements CustomTaskChange {
 
     public void setUp() throws SetupException {
 
-        if (fileName != null) {
+        if (tableName == null || columnName == null) {
+            throw new SetupException("tableName and columnName are required");
+        }
+
+        if (fileName == null && clobContent == null) {
+            throw new SetupException("Either fileName or clobContent must be provided");
+        }
+
+        if (fileName != null && clobContent == null) {
             try {
                 clobContent = IOUtils.toString(resourceAccessor.getResourceAsStream(fileName), fileEncoding);
             } catch (IOException e) {
@@ -218,13 +226,6 @@ public class OracleClobImporter implements CustomTaskChange {
         if (!(database.getConnection() instanceof JdbcConnection)) {
             validationErrors.addError("This custom change only works with JDBC connections");
         }
-
-        if (fileName == null && clobContent == null) {
-            validationErrors.addError("Either fileName or clobContent must be provided");
-        }
-
-        validationErrors.checkRequiredField(PARAM_TABLE_NAME, tableName);
-        validationErrors.checkRequiredField(PARAM_COLUMN_NAME, columnName);
 
         return validationErrors;
     }
